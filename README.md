@@ -5,6 +5,8 @@ This project includes two implementations: a Python version and a C++ port. Whil
 #### C++ Version: https://github.com/gs109111/WordleSolver/tree/cpp
 #### Python Version:  https://github.com/gs109111/WordleSolver/tree/python
 
+---
+
 ## Game (Wordle Python)
 
 A Wordle clone written in Python using Tkinter.
