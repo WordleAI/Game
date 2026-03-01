@@ -14,51 +14,16 @@ This project includes two implementations: a Python version and a C++ port. Whil
 > The endpoint may change or be removed by NYTimes at any time, which could break this tool.
 ---
 
-## Python Version
+## Game
 
-The Python implementation provides expanded functionality and automation features:
+A Wordle clone written in Python using Tkinter.
 
-### NYTimes Wordle *(Latest Answer Only)*
+The game follows standard Wordle rules:
+- 6 attempts to guess a 5-letter word
+- Green: correct letter in the correct position
+- Yellow: correct letter in the wrong position
+- Gray: letter not in the word
 
-- Fetches and displays the **latest official answer**
-- Designed for quick retrieval and reference
-- No automation or solver functionality for NYTimes
+Words are selected randomly from a filtered word list, and guesses are validated against the same dictionary.
 
-
-### Wordle Unlimited *(Auto Solver)*
-
-- Fully supports **Wordle Unlimited**
-- Includes an **automatic solver**
-- Can solve multiple puzzles in sequence
-- Number of puzzles solved depends on the user-selected amount
-
-### External Dependencies
-##### NYTimes
-- Requests (https://pypi.org/project/requests/)
-##### Wordle Unlimited
-- Selenium (https://github.com/SeleniumHQ/selenium)
-- Chromedriver (https://developer.chrome.com/docs/chromedriver/downloads)
-- Google Chrome (https://www.google.com/intl/en_ca/chrome/)
-##### Common
-- Termcolor (https://pypi.org/project/termcolor/)
-
----
-
-## Current Features
-
-| Feature/Services                          | Supported |
-|----------------------------------| -------|
-| NYTimes          | Yes        |  
-| Automatic Solver (Wordle Unlimited)     | Yes |
-| Colored & Formatted Logs    | Yes |
-| Performance Stats  | Yes            |
----
-## Todo
-
-| Feature                          | Notes |
-|----------------------------------|-------|
-| Add Support For Other Browsers (Selenium) | Currently only supports Chrome |
-| Threading                         | Stability? |
-| Integration with Other Services   | Not yet implemented |
-| AI/Universal Solver                         | ??? |
-| More Comments | |
+The game resets automatically after a win or loss.
