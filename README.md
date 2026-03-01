@@ -5,15 +5,6 @@ This project includes two implementations: a Python version and a C++ port. Whil
 #### C++ Version: https://github.com/gs109111/WordleSolver/tree/cpp
 #### Python Version:  https://github.com/gs109111/WordleSolver/tree/python
 
----
-
-> [!WARNING]
-> This project currently uses an **undocumented NYTimes Wordle endpoint** to fetch the latest puzzle answers. 
-> It is intended **for educational purposes only**. 
-> Please do **not use this for mass scraping, automated attacks, or commercial purposes**. 
-> The endpoint may change or be removed by NYTimes at any time, which could break this tool.
----
-
 ## Game (Wordle Python)
 
 A Wordle clone written in Python using Tkinter.
