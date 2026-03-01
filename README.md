@@ -17,7 +17,7 @@ The game follows standard Wordle rules:
 - Yellow: correct letter in the wrong position
 - Gray: letter not in the word
 
-Words are selected randomly from a filtered word list, and guesses are validated against the same dictionary.
+Words are selected randomly from a filtered word list, and guesses are validated against the same wordlist.
 
 The game resets automatically after a win or loss.
 
