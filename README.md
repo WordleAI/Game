@@ -27,3 +27,12 @@ The game follows standard Wordle rules:
 Words are selected randomly from a filtered word list, and guesses are validated against the same dictionary.
 
 The game resets automatically after a win or loss.
+
+---
+
+## Todo
+
+| Feature                          | Notes |
+|----------------------------------|-------|
+| Move everything to a class | |
+
