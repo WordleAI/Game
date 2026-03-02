@@ -26,8 +26,8 @@ The game resets automatically after a win or loss.
 ---
 
 
-### External Dependencies
-##### Python
+## External Dependencies
+#### Python
 - Requests (https://pypi.org/project/requests/)
 ---
 
