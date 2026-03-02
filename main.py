@@ -1,8 +1,6 @@
-# A bad version of Wordle written in Python
-# WordleSolver @ https://github.com/gs109111/WordleSolver/
-
-# TODO:
-# Move everything to a class
+# Wordle written in Python
+# WordleSolver 
+# https://github.com/gs109111/WordleSolver
 
 # Modules
 import random
