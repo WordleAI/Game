@@ -162,20 +162,23 @@ win.resizable(False, False)
 menubar = tk.Menu(win)
 win.config(menu=menubar)
 
-file_menu = tk.Menu(menubar)
+settings_menu = tk.Menu(menubar)
 
-file_menu.add_command(
+settings_menu.add_command(
     label='Update Wordlist',
     command=update_list
 )
-file_menu.add_command(
+
+settings_menu.add_separator()
+
+settings_menu.add_command(
     label='Project Webpage',
     command=website
 )
 
 menubar.add_cascade(
     label="Settings",
-    menu=file_menu
+    menu=settings_menu
 )
 
 filter_from_wordlist("words.txt")
