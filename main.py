@@ -157,6 +157,7 @@ def on_key_press(event):
 win = tk.Tk()
 win.title(f"Wordle Python v1.0.0")
 win.geometry("360x470")
+win.resizable(False, False) 
 
 menubar = tk.Menu(win)
 win.config(menu=menubar)
