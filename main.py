@@ -172,7 +172,7 @@ settings_menu.add_command(
 settings_menu.add_separator()
 
 settings_menu.add_command(
-    label='Project Webpage',
+    label='Project Website',
     command=website
 )
 
