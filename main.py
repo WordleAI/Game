@@ -197,6 +197,7 @@ for row in range(6):
             win,
             text=" ",
             bg="lightblue",
+            fg="black",
             font=("Arial", 18),
             width=4,
             height=2
