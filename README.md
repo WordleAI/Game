@@ -9,7 +9,7 @@ This project includes two implementations: a Python version and a C++ port. Whil
 
 ---
 
-## Game (Wordle Python)
+## Game/Testbench (Wordle Python)
 
 A Wordle clone written in Python using Tkinter.
 
