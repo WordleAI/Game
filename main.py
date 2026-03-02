@@ -15,7 +15,7 @@ word = ""
 current_row = 0
 selected_word = ""
 submitted = False
-word_list = ""
+word_list = None
 
 # Extra
 def website():
