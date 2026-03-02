@@ -34,6 +34,8 @@ def update_list():
 
         with open("words.txt", 'wb') as f:
             f.write(resp.content)
+        
+        filter_from_wordlist("words.txt")
 
         messagebox.showinfo("Wordle Python", "Done!")
 
