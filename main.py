@@ -30,6 +30,8 @@ class WordlePython():
 
         settings_menu = tk.Menu(menubar)
 
+        developer_menu = tk.Menu(menubar)
+
         settings_menu.add_command(
             label='Reset Game',
             command=self.reset_game
@@ -50,6 +52,16 @@ class WordlePython():
         menubar.add_cascade(
             label="Settings",
             menu=settings_menu
+        )
+
+        developer_menu.add_command(
+            label="Get Answer",
+            command=self.get_answer
+        )
+
+        menubar.add_cascade(
+            label="Developer Options",
+            menu=developer_menu
         )
         
         try:
@@ -93,6 +105,9 @@ class WordlePython():
     # Extra
     def website(self):
         webbrowser.open("https://github.com/gs109111/WordleSolver")
+
+    def get_answer(self):
+        messagebox.showinfo("Wordle Python", f"Answer: {self.selected_word}")
 
     def update_list(self):
         messagebox.showinfo("Wordle Python", "Updating Wordlist, Press Ok To Continue...")
