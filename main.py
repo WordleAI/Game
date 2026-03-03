@@ -10,211 +10,194 @@ import tkinter as tk
 from tkinter import messagebox
 import webbrowser
 
-# Init Variables
-word = ""
-current_row = 0
-selected_word = ""
-submitted = False
-word_list = None
+class WordlePython():
+    def __init__(self):
+        self.selected_word = ""
+        self.current_row = 0
+        self.is_submitted = False
+        self.word_list = None
+        self.words_list_url = "https://github.com/gs109111/WordleSolver/raw/refs/heads/dictionary/en/self.words.txt"
+        self.grid_labels = []
+        self.word = ""
 
-# Extra
-def website():
-    webbrowser.open("https://github.com/gs109111/WordleSolver")
+        # Window gen + menu bar
+        self.win = tk.Tk()
+        self.win.title(f"Wordle Python v1.0.0")
+        self.win.geometry("302x470")
+        self.win.resizable(False, False) 
 
-def update_list():
-    messagebox.showinfo("Wordle Python", "Updating, Press Ok To Continue...")
+        menubar = tk.Menu(self.win)
+        self.win.config(menu=menubar)
 
-    words_list_url = "https://github.com/gs109111/WordleSolver/raw/refs/heads/dictionary/en/words.txt"
+        settings_menu = tk.Menu(menubar)
 
-    try:
-        # Download latest wordlist
-        resp = requests.get(words_list_url)
-
-        with open("words.txt", 'wb') as f:
-            f.write(resp.content)
-        
-        filter_from_wordlist("words.txt")
-
-        messagebox.showinfo("Wordle Python", "Done!")
-
-    except (requests.ConnectionError, requests.Timeout):
-        pass
-
-# Select random word
-
-def select_word():
-    global selected_word
-
-    random_word = random.choice(word_list)
-
-    if random_word:
-        selected_word = random_word
-
-# Check if word is in wordlist
-def is_word_in_dict(word):
-
-    if word in word_list:
-        return True
-    else:
-        return False
-
-# Reset the game
-def reset_game():
-    global word
-    global current_row
-    global selected_word
-    global submitted
-
-    for row in range(6):
-        for col in range(5):
-            grid_labels[row][col].config(text="", bg="lightblue")
-
-    word = ""
-    current_row = 0
-    submitted = False
-    select_word()
-    update_display()
-    win.update_idletasks()
-    win.focus_force()
-
-# Update the display
-def update_display():
-
-    global selected_word
-    global word
-    global current_row
-    global submitted
-
-    for col, letter in enumerate(word):
-        grid_labels[current_row][col].config(text=letter.upper())
-
-        if submitted:
-            if letter == selected_word[col]:
-                grid_labels[current_row][col].config(bg="seagreen")
-            elif letter in selected_word:
-                grid_labels[current_row][col].config(bg="gold")
-            else:
-                grid_labels[current_row][col].config(bg="azure3")
-
-    for col in range(len(word), 5):
-        grid_labels[current_row][col].config(text="", bg="lightblue")
-
-    win.focus_force()
-
-# Detect and handle key presses
-def on_key_press(event):
-
-    global word
-    global current_row
-    global submitted
-    global selected_word
-    
-    key_pressed = event.keysym.lower()
-
-    if key_pressed.isalpha() and len(key_pressed) == 1:
-        if len(word) < 5:
-            word += key_pressed
-
-    elif key_pressed == "backspace":
-        word = word[:-1]
-
-    elif key_pressed == "return":
-        if len(word) == 5:
-            if not is_word_in_dict(word):
-                messagebox.showwarning("Wordle Python", "Word not in wordlist!")
-                word = ""
-                win.focus_force()
-                return
-            
-            submitted = True
-            update_display()
-
-            if word == selected_word:
-                messagebox.showinfo("Wordle Python", "You Won!")
-                reset_game()
-                
-                return
-
-            if current_row == 5:
-                selected_word_fl = selected_word[0].upper()
-                selected_word = selected_word_fl + selected_word[1:]
-                messagebox.showerror("Wordle Python", f"You Lost!\n\nThe Correct Word Was: {selected_word}")
-                
-                reset_game()
-                return
-
-            current_row += 1
-            word = ""
-            submitted = False
-    else:
-        pass
-        
-    update_display()
-
-# Window gen + menu bar
-win = tk.Tk()
-win.title(f"Wordle Python v1.0.0")
-win.geometry("360x470")
-win.resizable(False, False) 
-
-menubar = tk.Menu(win)
-win.config(menu=menubar)
-
-settings_menu = tk.Menu(menubar)
-
-settings_menu.add_command(
-    label='Update Wordlist',
-    command=update_list
-)
-
-settings_menu.add_separator()
-
-settings_menu.add_command(
-    label='Project Website',
-    command=website
-)
-
-menubar.add_cascade(
-    label="Settings",
-    menu=settings_menu
-)
-
-filter_from_wordlist("words.txt")
-with open("words_filtered.txt", "r") as f2:
-    lines = [line.strip() for line in f2]
-    word_list = lines
-
-select_word()
-
-# Board generation
-
-grid_labels = []
-
-# Draw 
-for row in range(6):
-    row_labels = []
-    for col in range(5):
-        letter_block = tk.Label(
-            win,
-            text=" ",
-            bg="lightblue",
-            fg="black",
-            font=("Arial", 18),
-            width=4,
-            height=2
+        settings_menu.add_command(
+            label='Update Wordlist',
+            command=self.update_list
         )
 
-        letter_block.grid(row=row, column=col, padx=5, pady=5)
-        row_labels.append(letter_block)
+        settings_menu.add_separator()
 
-    grid_labels.append(row_labels)
+        settings_menu.add_command(
+            label='Project Website',
+            command=self.website
+        )
 
-win.bind("<Key>", on_key_press)
+        menubar.add_cascade(
+            label="Settings",
+            menu=settings_menu
+        )
 
-# Draw
-win.mainloop()
+        filter_from_wordlist("words.txt")
+        with open("words_filtered.txt", "r") as f2:
+            lines = [line.strip() for line in f2]
+            self.word_list = lines
+
+        self.select_word()
+
+        # Board generation
+
+        # Draw 
+        for row in range(6):
+            row_labels = []
+            for col in range(5):
+                letter_block = tk.Label(
+                    self.win,
+                    text=" ",
+                    bg="lightblue",
+                    fg="black",
+                    font=("Arial", 18),
+                    width=4,
+                    height=2
+                )
+
+                letter_block.grid(row=row, column=col, padx=5, pady=5)
+                row_labels.append(letter_block)
+
+            self.grid_labels.append(row_labels)
+
+        self.win.bind("<Key>", self.on_key_press)
+
+        # Draw
+        self.win.mainloop()
+        
 
 
+    # Extra
+    def website():
+        webbrowser.open("https://github.com/gs109111/WordleSolver")
+
+    def update_list(self):
+        messagebox.showinfo("Wordle Python", "Updating, Press Ok To Continue...")
+
+        try:
+            # Download latest self.wordlist
+            resp = requests.get(self.words_list_url)
+
+            with open("self.words.txt", 'wb') as f:
+                f.write(resp.content)
+            
+            filter_from_wordlist("self.words.txt")
+
+            messagebox.showinfo("Wordle Python", "Done!")
+
+        except (requests.ConnectionError, requests.Timeout):
+            pass
+
+    # Select random self.word
+
+    def select_word(self):
+        random_word = random.choice(self.word_list)
+
+        if random_word:
+            self.selected_word = random_word
+
+    # Check if self.word is in self.wordlist
+    def is_word_in_dict(self, word):
+
+        if self.word in self.word_list:
+            return True
+        else:
+            return False
+
+    # Reset the game
+    def reset_game(self):
+
+        for row in range(6):
+            for col in range(5):
+                self.grid_labels[row][col].config(text="", bg="lightblue")
+
+        self.word = ""
+        self.current_row = 0
+        self.is_submitted = False
+        self.select_word()
+        self.update_display()
+        self.win.update_idletasks()
+        self.win.focus_force()
+
+    # Update the display
+    def update_display(self):
+
+        for col, letter in enumerate(self.word):
+            self.grid_labels[self.current_row][col].config(text=letter.upper())
+
+            if self.is_submitted:
+                if letter == self.selected_word[col]:
+                    self.grid_labels[self.current_row][col].config(bg="seagreen")
+                elif letter in self.selected_word:
+                    self.grid_labels[self.current_row][col].config(bg="gold")
+                else:
+                   self.grid_labels[self.current_row][col].config(bg="azure3")
+
+        for col in range(len(self.word), 5):
+            self.grid_labels[self.current_row][col].config(text="", bg="lightblue")
+
+        self.win.focus_force()
+
+    # Detect and handle key presses
+    def on_key_press(self, event):
+        
+        key_pressed = event.keysym.lower()
+
+        if key_pressed.isalpha() and len(key_pressed) == 1:
+            if len(self.word) < 5:
+                self.word += key_pressed
+
+        elif key_pressed == "backspace":
+            self.word = self.word[:-1]
+
+        elif key_pressed == "return":
+            if len(self.word) == 5:
+                if not self.is_word_in_dict(self.word):
+                    messagebox.showwarning("Wordle Python", "Word not in wordlist!")
+                    self.word = ""
+                    self.win.focus_force()
+                    return
+                
+                self.is_submitted = True
+                self.update_display()
+
+                if self.word == self.selected_word:
+                    messagebox.showinfo("Wordle Python", "You Won!")
+                    self.reset_game()
+                    
+                    return
+
+                if self.current_row == 5:
+                    selected_word_fl = self.selected_word[0].upper()
+                    self.selected_word = selected_word_fl + self.selected_word[1:]
+                    messagebox.showerror("Wordle Python", f"You Lost!\n\nThe Correct Word Was: {self.selected_word}")
+                    
+                    self.reset_game()
+                    return
+
+                self.current_row += 1
+                self.word = ""
+                self.is_submitted = False
+        else:
+            pass
+            
+        self.update_display()
 
 
-
+game = WordlePython()
