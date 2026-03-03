@@ -91,7 +91,7 @@ class WordlePython():
         webbrowser.open("https://github.com/gs109111/WordleSolver")
 
     def update_list(self):
-        messagebox.showinfo("Wordle Python", "Updating, Press Ok To Continue...")
+        messagebox.showinfo("Wordle Python", "Updating Wordlist, Press Ok To Continue...")
 
         try:
             # Download latest self.wordlist
