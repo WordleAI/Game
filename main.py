@@ -23,7 +23,7 @@ class WordlePython():
         # Window gen + menu bar
         self.win = tk.Tk()
         self.win.title(f"Wordle Python v1.0.0")
-        self.win.geometry("302x470")
+        #self.win.geometry("302x470")
         self.win.resizable(False, False) 
 
         menubar = tk.Menu(self.win)
