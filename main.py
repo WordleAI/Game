@@ -104,7 +104,7 @@ class WordlePython():
         except (requests.ConnectionError, requests.Timeout):
             pass
 
-    # Select random self.word
+    # Select random word
 
     def select_word(self):
         random_word = random.choice(self.word_list)
@@ -112,7 +112,7 @@ class WordlePython():
         if random_word:
             self.selected_word = random_word
 
-    # Check if self.word is in self.wordlist
+    # Check if word is in wordlist
     def is_word_in_dict(self, word):
 
         if self.word in self.word_list:
