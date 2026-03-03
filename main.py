@@ -23,13 +23,17 @@ class WordlePython():
         # Window gen + menu bar
         self.win = tk.Tk()
         self.win.title(f"Wordle Python v1.0.0")
-        #self.win.geometry("302x470")
         self.win.resizable(False, False) 
 
         menubar = tk.Menu(self.win)
         self.win.config(menu=menubar)
 
         settings_menu = tk.Menu(menubar)
+
+        settings_menu.add_command(
+            label='Reset Game',
+            command=self.reset_game
+        )
 
         settings_menu.add_command(
             label='Update Wordlist',
