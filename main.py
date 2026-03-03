@@ -16,7 +16,7 @@ class WordlePython():
         self.current_row = 0
         self.is_submitted = False
         self.word_list = None
-        self.words_list_url = "https://github.com/gs109111/WordleSolver/raw/refs/heads/dictionary/en/self.words.txt"
+        self.words_list_url = "https://github.com/gs109111/WordleSolver/raw/refs/heads/dictionary/en/words.txt"
         self.grid_labels = []
         self.word = ""
 
@@ -47,11 +47,14 @@ class WordlePython():
             label="Settings",
             menu=settings_menu
         )
-
-        filter_from_wordlist("words.txt")
-        with open("words_filtered.txt", "r") as f2:
-            lines = [line.strip() for line in f2]
-            self.word_list = lines
+        
+        try:
+            filter_from_wordlist("words.txt")
+            with open("words_filtered.txt", "r") as f2:
+                lines = [line.strip() for line in f2]
+                self.word_list = lines
+        except:
+            self.update_list()
 
         self.select_word()
 
