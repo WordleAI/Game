@@ -35,4 +35,4 @@ The game resets automatically after a win or loss.
 
 | Feature                          | Notes |
 |----------------------------------|-------|
-
+| Fix WordlePython class to make it cleaner and better | |
