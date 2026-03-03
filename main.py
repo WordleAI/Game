@@ -94,10 +94,10 @@ class WordlePython():
             # Download latest self.wordlist
             resp = requests.get(self.words_list_url)
 
-            with open("self.words.txt", 'wb') as f:
+            with open("words.txt", 'wb') as f:
                 f.write(resp.content)
             
-            filter_from_wordlist("self.words.txt")
+            filter_from_wordlist("words.txt")
 
             messagebox.showinfo("Wordle Python", "Done!")
 
