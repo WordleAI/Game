@@ -35,5 +35,4 @@ The game resets automatically after a win or loss.
 
 | Feature                          | Notes |
 |----------------------------------|-------|
-| Move everything to a class | |
 
