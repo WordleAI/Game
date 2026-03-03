@@ -84,7 +84,7 @@ class WordlePython():
 
 
     # Extra
-    def website():
+    def website(self):
         webbrowser.open("https://github.com/gs109111/WordleSolver")
 
     def update_list(self):
