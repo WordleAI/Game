@@ -1,6 +1,6 @@
 # Wordle written in Python
 # WordleSolver 
-# https://github.com/gs109111/WordleSolver
+# https://github.com/WordleAI/
 
 # Modules
 import random
@@ -16,7 +16,7 @@ class WordlePython():
         self.current_row = 0
         self.is_submitted = False
         self.word_list = None
-        self.words_list_url = "https://github.com/gs109111/WordleSolver/raw/refs/heads/dictionary/en/words.txt"
+        self.words_list_url = "https://github.com/WordleAI/Dictionary/raw/refs/heads/dictionary/en/words.txt"
         self.grid_labels = []
         self.word = ""
 
@@ -104,7 +104,7 @@ class WordlePython():
 
     # Extra
     def website(self):
-        webbrowser.open("https://github.com/gs109111/WordleSolver")
+        webbrowser.open("https://github.com/WordleAI")
 
     def get_answer(self):
         messagebox.showinfo("Wordle Python", f"Answer: {self.selected_word}")
